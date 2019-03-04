@@ -1,7 +1,3 @@
-import React from 'react';
+import HomePage from './home';
 
-function Home() {
-    return <div>Welcome to next.js!</div>
-}
-
-export default Home
+export default HomePage;

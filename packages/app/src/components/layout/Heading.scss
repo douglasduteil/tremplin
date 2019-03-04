@@ -1,0 +1,24 @@
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat";
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  &__back {
+      font-size: 100px;
+      color: #EEEFF0;
+      font-weight: 800;
+      line-height: 86px;
+  }
+
+  &__front {
+      color: #0B1C3D;
+      font-size: 38px;
+      font-weight: 500;
+      position: absolute;
+  }
+}
