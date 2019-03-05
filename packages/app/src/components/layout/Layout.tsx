@@ -1,5 +1,5 @@
-import { Header } from "@components";
 import * as React from "react";
+import { Header } from "./Header";
 
 export class Layout extends React.Component<any, any> {
 

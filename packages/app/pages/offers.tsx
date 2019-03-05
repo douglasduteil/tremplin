@@ -1,5 +1,7 @@
-import { JobOfferListItem, Layout } from "@components";
-import { JobOffer } from "@models";
+import { JobOfferListItem } from "@components/jobOffers";
+import { Layout } from "@components/layout";
+import { JobOffer } from "@domain";
+import { jobOfferRepository } from '@repository';
 import React, { Component } from "react";
 
 interface JobOffersProps {
@@ -9,10 +11,8 @@ interface JobOffersProps {
 export default class JobOffersPage extends Component<JobOffersProps, any> {
 
   public static getInitialProps = async () => {
-    const res: JobOffer[] = [];
-    res.push({ title: "Remplacement dans la Drôme", id: "1" });
-    res.push({ title: "Remplacement autour du bassin d'arcachon", id: "2" });
-    return { offers: res };
+    const data = jobOfferRepository().findAll();
+    return { jobOffers: data };
   }
 
   public render() {

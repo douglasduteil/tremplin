@@ -1,4 +1,4 @@
-import { Layout } from '@components';
+import { Layout } from '@components/layout';
 import { withRouter } from 'next/router';
 import { Component } from 'react';
 

@@ -1,4 +1,4 @@
 export interface JobOffer {
-  id?: string;
+  id?: number;
   title: string;
 };

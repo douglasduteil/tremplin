@@ -1,0 +1,1 @@
+export { jobOfferRepository } from "./jobOfferRepository";

@@ -5,7 +5,8 @@ module.exports = {
       {
         "alias": {
           "@components": "./src/components",
-          "@models": "./src/models",
+          "@domain": "./src/domain",
+          "@repository": "./src/repository",
         },
         "root": [
           "./"

@@ -1,6 +1,6 @@
+import { JobOffer } from "@domain";
 import Link from "next/link";
 import React, { Component } from 'react';
-import { JobOffer } from "src/models";
 
 interface JobOfferListItemProps {
   jobOffer: JobOffer;

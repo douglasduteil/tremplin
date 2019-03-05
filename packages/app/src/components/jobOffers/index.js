@@ -1,0 +1,2 @@
+export { JobOfferListItem } from './JobOfferListItem';
+

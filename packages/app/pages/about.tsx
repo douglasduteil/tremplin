@@ -1,4 +1,4 @@
-import { Layout } from "@components";
+import { Layout } from "@components/layout";
 import * as React from "react";
 
 export default class AboutPage extends React.Component<any, any> {

@@ -1,4 +1,4 @@
-import { Heading, Layout } from '@components';
+import { Heading, Layout } from '@components/layout';
 import * as React from 'react';
 import './home.scss';
 
