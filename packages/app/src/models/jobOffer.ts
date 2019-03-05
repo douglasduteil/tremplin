@@ -1,4 +1,4 @@
-export interface Offer {
+export interface JobOffer {
   id?: string;
   title: string;
 };

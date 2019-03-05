@@ -2,7 +2,7 @@ import { Layout } from '@components';
 import { withRouter } from 'next/router';
 import { Component } from 'react';
 
-class OfferPage extends Component<any, any> {
+class JobOfferPage extends Component<any, any> {
 
   public render() {
     return (
@@ -15,4 +15,4 @@ class OfferPage extends Component<any, any> {
 
 }
 
-export default withRouter(OfferPage);
+export default withRouter(JobOfferPage);

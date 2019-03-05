@@ -1,16 +1,15 @@
-import { Layout, OfferListItem } from "@components";
-import { NextContext } from "next";
+import { JobOfferListItem, Layout } from "@components";
+import { JobOffer } from "@models";
 import React, { Component } from "react";
-import { Offer } from "src/models";
 
-interface OffersProps {
-  offers: Offer[];
+interface JobOffersProps {
+  jobOffers: JobOffer[];
 }
 
-export default class OffersPage extends Component<OffersProps, any> {
+export default class JobOffersPage extends Component<JobOffersProps, any> {
 
   public static getInitialProps = async () => {
-    const res: Offer[] = [];
+    const res: JobOffer[] = [];
     res.push({ title: "Remplacement dans la Drôme", id: "1" });
     res.push({ title: "Remplacement autour du bassin d'arcachon", id: "2" });
     return { offers: res };
@@ -21,7 +20,7 @@ export default class OffersPage extends Component<OffersProps, any> {
       <Layout>
         <h1>Offres</h1>
         <ul>
-          {this.props.offers.map(offer => <OfferListItem key={offer.id} offer={offer}></OfferListItem>)}
+          {this.props.jobOffers.map(jobOffer => <JobOfferListItem key={jobOffer.id} jobOffer={jobOffer}></JobOfferListItem>)}
         </ul>
       </Layout>
     )
