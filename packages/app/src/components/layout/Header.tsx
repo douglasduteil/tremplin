@@ -1,24 +1,37 @@
 import Link from "next/link";
 import * as React from "react";
+import styled from 'styled-components';
 
-const linkStyle = {
-  marginRight: 15
-}
+const TopNav = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 20px;
+  align-items: center;
+`
+
+const PageLink = styled.a`
+  flex: 0 1 100px;
+  margin-right: 10px;
+  &:hover{
+    box-shadow: 1px 1px;
+  }
+`;
 
 export class Header extends React.Component<any, any> {
   public render(): JSX.Element {
     return (
-      <div>
+      <TopNav>
         <Link href="/">
-          <a style={linkStyle}>Accueil</a>
+          <PageLink>Accueil</PageLink>
         </Link>
         <Link href="/offers">
-          <a style={linkStyle}>Offres</a>
+          <PageLink>Offres</PageLink>
         </Link>
         <Link href="/about">
-          <a style={linkStyle}>A propos</a>
+          <PageLink>A propos</PageLink>
         </Link>
-      </div>
+      </TopNav>
     );
   }
 }

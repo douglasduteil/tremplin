@@ -13,7 +13,12 @@ module.exports = {
         ]
 
       }
-    ]
+    ],
+    ["styled-components", {
+      "displayName": true,
+      "preprocess": false,
+      "ssr": true,
+    }]
   ],
   "presets": [
     "next/babel",
