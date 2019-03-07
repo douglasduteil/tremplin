@@ -1,5 +1,5 @@
 import { JobOfferListItem } from "@components/jobOffers";
-import { Layout } from "@components/layout";
+import { PageLayout } from "@components/layout";
 import { JobOffer } from "@domain";
 import { jobOfferRepository } from '@repository';
 import React, { Component } from "react";
@@ -17,12 +17,12 @@ export default class JobOffersPage extends Component<JobOffersProps, any> {
 
   public render() {
     return (
-      <Layout>
+      <PageLayout>
         <h1>Offres</h1>
         <ul>
           {this.props.jobOffers.map(jobOffer => <JobOfferListItem key={jobOffer.id} jobOffer={jobOffer}></JobOfferListItem>)}
         </ul>
-      </Layout>
+      </PageLayout>
     )
   }
 

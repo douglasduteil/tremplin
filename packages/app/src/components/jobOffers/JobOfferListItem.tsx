@@ -1,12 +1,10 @@
-import { JobOffer } from "@domain";
 import Link from "next/link";
 import React, { Component } from 'react';
+import { JobOfferProps } from "./JobOfferProps";
 
-interface JobOfferListItemProps {
-  jobOffer: JobOffer;
-}
 
-export class JobOfferListItem extends Component<JobOfferListItemProps, any> {
+
+export class JobOfferListItem extends Component<JobOfferProps, any> {
 
   public render() {
     return (<li>

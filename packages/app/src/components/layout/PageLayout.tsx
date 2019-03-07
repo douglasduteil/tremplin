@@ -1,21 +1,16 @@
 import * as React from "react";
 import { Header } from "./Header";
 
-export class Layout extends React.Component<any, any> {
+export class PageLayout extends React.Component<{ header?: boolean }> {
 
   constructor(props: any) {
     super(props);
   }
 
   public render() {
-    const layoutStyle = {
-      border: '1px solid #DDD',
-      margin: 20,
-      padding: 20,
-    }
     return (
-      <div style={layoutStyle}>
-        <Header />
+      <div>
+        {this.props.header && <Header />}
         {this.props.children}
       </div>
     );
