@@ -1,7 +1,7 @@
 import { PageLayout } from '@components/layout';
+import { styled } from '@components/styledComponents';
 import Link from 'next/link';
 import { Component } from 'react';
-import styled from 'styled-components';
 
 // ============================================================
 // ============================================================
@@ -14,7 +14,7 @@ const TopBar = styled.div`
   display: flex;
 
 	border: 1px solid #CCCCCC;
-	background-color: #FFFFFF;
+	background-color: ${props => props.theme.color.white};
   box-shadow: 0 6px 14px 0 rgba(51,51,51,0.2);
 
 
@@ -22,7 +22,7 @@ const TopBar = styled.div`
       flex: 0 1 auto;
       padding: 30px 10px 30px 10%;
 
-      color: rgba(0,99,255,0.87);
+      color: ${props => props.theme.color.blueLight};
       font-family: "Roboto Condensed";
       font-size: 34px;
 
@@ -38,7 +38,7 @@ const TopBar = styled.div`
 
       color: rgba(96,103,114,0.87);
       font-family: "Roboto Condensed";
-      font-size: 16px;
+      font-size: ${props => props.theme.fontSize.base};
   }
 
 `
@@ -52,22 +52,22 @@ const TopBar = styled.div`
 const Heading = styled.div`
   padding: 200px 0 30px 0;
 
-  background: black;
+  background: ${props => props.theme.color.black};
 
   .heading__title {
     display: block;
     padding: 10px 0 10px 10%;
 
-    color: #FFFFFF;
-    font-size: 20px;
+    color: ${props => props.theme.color.white};
+    font-size: ${props => props.theme.fontSize.xxl};
 }
 
 .heading__hint {
   display: block;
   padding: 10px 0 10px 10%;
 
-  color: #FFFFFF;
-  font-size: 14px;
+  color: ${props => props.theme.color.white};
+  font-size: ${props => props.theme.fontSize.xs};
 }
 `
 
@@ -78,7 +78,7 @@ const BlockNav = styled.div`
   top: 0;
   height: 70px;
 
-  background-color: #FFFFFF;
+  background-color: ${props => props.theme.color.white};
 
   @media (max-width: 700px) {
     display: none;
@@ -90,8 +90,8 @@ const BlockNav = styled.div`
     margin: 0 0 0 10px;
     line-height: 70px;
 
-    color: #4A4A4A;
-    font-size: 16px;
+    color: ${props => props.theme.color.greyDarker};
+    font-size: ${props => props.theme.fontSize.xl};
     font-weight: 500;
     text-transform: uppercase;
     :hover {
@@ -99,7 +99,7 @@ const BlockNav = styled.div`
         opacity: 0.6;
       }
     &.active {
-      border-bottom: 3px solid #0063FF;
+      border-bottom: 3px solid ${props => props.theme.color.blue};
     }
   }
 
@@ -110,7 +110,7 @@ const Block = styled.div<{ grey?: boolean }>`
   border-bottom: 1px solid #CCCCCC;
   padding: 30px  10% 50px 10%;
 
-  background-color: ${props => props.grey ? "#EEEEEE" : "#FFFFFF"};
+  background-color: ${props => props.grey ? props.theme.color.greyLight : props.theme.color.white};
 
   .block__header {
     padding: 20px 0
@@ -119,7 +119,7 @@ const Block = styled.div<{ grey?: boolean }>`
   .block__header-title {
     display: block;
 
-	  color: #0063FF;
+	  color: ${props => props.theme.color.blue};
 	  font-size: 32px;
     font-weight: 500;
   }
@@ -127,7 +127,7 @@ const Block = styled.div<{ grey?: boolean }>`
   .block__header-hint {
     display: block;
 
-    color: #666666;
+    color: ;
     font-size: 22px;
   }
 `
@@ -140,7 +140,7 @@ const Section = styled.div`
     display: block;
     padding: 0 0 10px 0;
 
-    color: #666666;
+    color: ${props => props.theme.color.greyDark};
     font-size: 22px;
   }
 
@@ -153,7 +153,7 @@ const Section = styled.div`
     line-height: 26px;
 
     color: #333333;
-    font-size: 16px;
+    font-size: ${props => props.theme.fontSize.xl};
   }
 
   ul {
