@@ -1,4 +1,5 @@
-import { PageLayout } from '@components/layout';
+import { PageLayout, Row } from '@components/layout';
+import { GridItem } from '@components/layout/grid/Row';
 import { styled } from '@components/styles';
 import Link from 'next/link';
 import { Component } from 'react';
@@ -102,10 +103,7 @@ const BlockNav = styled.div`
       border-bottom: 3px solid ${props => props.theme.color.blue};
     }
   }
-
 `
-
-
 const Block = styled.div<{ grey?: boolean }>`
   border-bottom: 1px solid #CCCCCC;
   padding: 30px  10% 50px 10%;
@@ -168,26 +166,6 @@ const FakeImage = styled.div`
   width: 90%;
   height: 400px;
 `
-// ============================================================
-// ============================================================
-// OFFER COMPONENTS
-// ============================================================
-// ============================================================
-
-const Row = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    @media (max-width: 700px) {
-      flex-direction: column;
-    }
-  `;
-
-const Item = styled.div<{ flex?: string }>`
- flex: ${props => props.flex};
-`
-
 class JobOfferPage extends Component<any, any> {
 
   public render() {
@@ -216,8 +194,8 @@ class JobOfferPage extends Component<any, any> {
             <span className="block__header-hint">Chemin de catalanie, Bérat (31700), Occitanie</span>
           </div>
           <Row>
-            <Item flex="50%"><FakeImage></FakeImage></Item>
-            <Item flex="50%">
+            <GridItem flex="50%"><FakeImage></FakeImage></GridItem>
+            <GridItem flex="50%">
               <Section>
                 <span className="section__title">Présentation</span>
                 <span className="section__content text">Maison médicale neuve pluridisciplinaire (kiné-psychiatre-psychologue-orthophonistes-infirmières) - grand bureau avec terrasse. Informatisée, une patientéle jeune et dynamique. Projet de collaboration pour septembre 2019 avec bureau neuf pour collaborateur. Pellentesque tellus. Donec eget tortor vel dolor varius consectetuer. Donec mauris nibh, pretium a, tempus eget, varius in, eros. Cras lacus. Nam tellus purus, accumsan commodo, aliquam vitae, posuere nec, odio.</span>
@@ -230,7 +208,7 @@ class JobOfferPage extends Component<any, any> {
                   <div>> Logiciel de prise de rendez-vous</div>
                 </div>
               </Section>
-            </Item>
+            </GridItem>
           </Row>
         </Block>
         <Block>
@@ -239,8 +217,8 @@ class JobOfferPage extends Component<any, any> {
             <span className="block__header-hint">Bérat (31700), Occitanie</span>
           </div>
           <Row>
-            <Item flex="60%"><FakeImage></FakeImage></Item>
-            <Item flex="40%">
+            <GridItem flex="60%"><FakeImage></FakeImage></GridItem>
+            <GridItem flex="40%">
               <Section>
                 <span className="section__title">Transport</span>
                 <div className="section__content text">
@@ -249,7 +227,7 @@ class JobOfferPage extends Component<any, any> {
                   <div>> Stations de ski à 1h - Mer à 1h30</div>
                 </div>
               </Section>
-            </Item>
+            </GridItem>
           </Row>
         </Block>
         <Block>
@@ -258,7 +236,7 @@ class JobOfferPage extends Component<any, any> {
             <span className="block__header-hint">Lorem ipsum dolor sit amet</span>
           </div>
           <Row>
-            <Item flex="0 0 30%">
+            <GridItem flex="0 0 30%">
               <Section>
                 <div className="section__content text">
                   <div>> Statut salarié</div>
@@ -267,13 +245,13 @@ class JobOfferPage extends Component<any, any> {
                   <div>> Visites à domicile</div>
                 </div>
               </Section>
-            </Item>
-            <Item flex="0 0 30%">
+            </GridItem>
+            <GridItem flex="0 0 30%">
               <Section>
                 <div className="section__content text">Patientèle estimée à 4 500 habitants (plus de 3 000 habitants sur la commune</div>
                 <div className="section__content text">Professionnels déjà installés dans la maison médicale: un médecin généraliste (Dr Yveline DESIREL)</div>
               </Section>
-            </Item>
+            </GridItem>
           </Row>
         </Block>
         <Block>
@@ -282,7 +260,7 @@ class JobOfferPage extends Component<any, any> {
             <span className="block__header-hint">Lorem ipsum dolor sit amet</span>
           </div>
           <Row>
-            <Item flex="50%">
+            <GridItem flex="50%">
               <Section>
                 <span className="section__title">Nombre de paramédicaux</span>
                 <div className="section__content text">
@@ -291,8 +269,8 @@ class JobOfferPage extends Component<any, any> {
                   <div>> Une ostéopathe</div>
                 </div>
               </Section>
-            </Item>
-            <Item flex="50%">
+            </GridItem>
+            <GridItem flex="50%">
               <Section>
                 <span className="section__title">Équipements</span>
                 <div className="section__content text">
@@ -301,7 +279,7 @@ class JobOfferPage extends Component<any, any> {
                   <div>> Laboratoire d'analyse à moins de 10km</div>
                 </div>
               </Section>
-            </Item>
+            </GridItem>
           </Row>
           <Section>
             <span className="section__title">Présentation</span>
@@ -314,8 +292,8 @@ class JobOfferPage extends Component<any, any> {
             <span className="block__header-hint">Un cadre de vie idéal pour s'épanouir en famille</span>
           </div>
           <Row>
-            <Item flex="50%"><FakeImage></FakeImage></Item>
-            <Item flex="50%">
+            <GridItem flex="50%"><FakeImage></FakeImage></GridItem>
+            <GridItem flex="50%">
               <Section>
                 <span className="section__title">Equipements municipaux</span>
                 <div className="section__content text">
@@ -336,7 +314,7 @@ class JobOfferPage extends Component<any, any> {
                 <span className="section__title">Présentation</span>
                 <div className="section__content  text">Nam a justo quis ante consectetuer ullamcorper. Ut bibendum, elit a congue ultricies, sem ligula adipiscing tellus, sed tempus est urna in lectus. Integer non dolor. Phasellus vehicula sem ac erat. Phasellus tincidunt iaculis lacus. Donec quam pede, interdum eget, egestas a, iaculis in, tellus. Nam a justo quis ante consectetuer ullamcorper. Ut bibendum, elit a congue ultricies, sem ligula adipiscing tellus, sed tempus est urna in lectus. Integer non dolor. Phasellus vehicula sem ac erat. Phasellus tincidunt iaculis lacus. Donec quam pede, interdum eget, egestas a, iaculis in, tellus.</div>
               </Section>
-            </Item>
+            </GridItem>
           </Row>
         </Block>
         <Block>
@@ -345,9 +323,9 @@ class JobOfferPage extends Component<any, any> {
             <span className="block__header-hint">Bérat (31700), Occitanie</span>
           </div>
           <Row>
-            <Item flex="70%"><FakeImage></FakeImage></Item>
-            <Item flex="30%">
-            </Item>
+            <GridItem flex="70%"><FakeImage></FakeImage></GridItem>
+            <GridItem flex="30%">
+            </GridItem>
           </Row>
         </Block>
         <Block id="block5">
@@ -356,13 +334,13 @@ class JobOfferPage extends Component<any, any> {
             <span className="block__header-hint">Lorem ipsum dolor sit amet</span>
           </div>
           <Row>
-            <Item flex="60%">
+            <GridItem flex="60%">
               <Section>
                 <span className="section__title">Présentation</span>
                 <div className="section__content  text">Commune classée en zone de vigilance, possibilité d’obtention de différentes aides (Contrat de praticien territorial de médecine générale PTMG, contrat d’engagement de service public CESP)</div>
               </Section>
-            </Item>
-            <Item flex="20%">
+            </GridItem>
+            <GridItem flex="20%">
               <Section>
                 <span className="section__title">Aides éligibles</span>
                 <div className="section__content text">
@@ -371,8 +349,8 @@ class JobOfferPage extends Component<any, any> {
                   <div>> ZRR</div>
                 </div>
               </Section>
-            </Item>
-            <Item flex="20%"></Item>
+            </GridItem>
+            <GridItem flex="20%"></GridItem>
           </Row>
         </Block>
       </PageLayout>
