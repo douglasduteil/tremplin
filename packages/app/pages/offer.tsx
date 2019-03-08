@@ -13,6 +13,7 @@ import { Component } from 'react';
 const TopBar = styled.div`
   height: 100px;
   display: flex;
+  padding: 0 0 0 10%;
 
 	border: 1px solid #CCCCCC;
 	background-color: ${props => props.theme.color.white};
@@ -20,8 +21,8 @@ const TopBar = styled.div`
 
 
   .topbar__brand {
-      flex: 0 1 100px;
-      padding: 30px 10px 30px 10%;
+      flex: 0 1 auto;
+      line-height: 100px;
 
       color: ${props => props.theme.color.blueLight};
       font-family: "Roboto Condensed";
@@ -34,7 +35,9 @@ const TopBar = styled.div`
   }
 
   .topbar__slogan {
-      flex: 0 1 300px;
+      flex: 0 1 auto;
+      min-width: 200px;
+      max-width: 300px;
       padding: 35px 10px;
 
       color: rgba(96,103,114,0.87);
