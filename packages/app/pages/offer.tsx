@@ -20,7 +20,7 @@ const TopBar = styled.div`
 
 
   .topbar__brand {
-      flex: 0 1 auto;
+      flex: 0 1 100px;
       padding: 30px 10px 30px 10%;
 
       color: ${props => props.theme.color.blueLight};
@@ -51,24 +51,25 @@ const TopBar = styled.div`
 
 
 const Heading = styled.div`
-  padding: 200px 0 30px 0;
+  padding: 250px 0 30px 10%;
 
-  background: ${props => props.theme.color.black};
+  background-image: url("/static/assets/photos/heading.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
 
   .heading__title {
     display: block;
-    padding: 10px 0 10px 10%;
+    padding: 0 0 5px 0;
 
     color: ${props => props.theme.color.white};
-    font-size: ${props => props.theme.fontSize.xxl};
+    font-size: 32px;
 }
 
 .heading__hint {
   display: block;
-  padding: 10px 0 10px 10%;
 
   color: ${props => props.theme.color.white};
-  font-size: ${props => props.theme.fontSize.xs};
+  font-size: ${props => props.theme.fontSize.xxl};
 }
 `
 
@@ -110,6 +111,11 @@ const Block = styled.div<{ grey?: boolean }>`
 
   background-color: ${props => props.grey ? props.theme.color.greyLight : props.theme.color.white};
 
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
   .block__header {
     padding: 20px 0
   }
@@ -125,14 +131,14 @@ const Block = styled.div<{ grey?: boolean }>`
   .block__header-hint {
     display: block;
 
-    color: ;
+    color: #666666;
     font-size: 22px;
   }
 `
 
 const Section = styled.div`
 
-  padding: 0 10px 0 0;
+  padding: 0 10px 0 30px;
 
   .section__title {
     display: block;
@@ -151,7 +157,7 @@ const Section = styled.div`
     line-height: 26px;
 
     color: #333333;
-    font-size: ${props => props.theme.fontSize.xl};
+    font-size: ${props => props.theme.fontSize.base};
   }
 
   ul {
@@ -194,7 +200,9 @@ class JobOfferPage extends Component<any, any> {
             <span className="block__header-hint">Chemin de catalanie, Bérat (31700), Occitanie</span>
           </div>
           <Row>
-            <GridItem flex="50%"><FakeImage></FakeImage></GridItem>
+            <GridItem flex="50%">
+              <img src="/static/assets/photos/lobby.jpg"></img>
+            </GridItem>
             <GridItem flex="50%">
               <Section>
                 <span className="section__title">Présentation</span>
