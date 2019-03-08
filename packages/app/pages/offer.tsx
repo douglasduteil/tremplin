@@ -1,5 +1,5 @@
 import { PageLayout } from '@components/layout';
-import { styled } from '@components/styledComponents';
+import { styled } from '@components/styles';
 import Link from 'next/link';
 import { Component } from 'react';
 

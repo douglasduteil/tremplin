@@ -1,4 +1,4 @@
-import ThemeInterface from "@components/styledComponents/theme";
+import ThemeInterface from "@components/styles/theme";
 import App, { Container, NextAppContext } from "next/app";
 import React from "react";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
