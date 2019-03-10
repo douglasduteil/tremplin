@@ -16,9 +16,14 @@ const theme: ThemeInterface = {
 
     greyLight: "#EEEEEE",
     greyDark: "#666666",
-    greyDarker: "#4A4A4A",
+    greyDarker: "#333333",
 
-    white: "#FFFFFF"
+    white: "#FFFFFF",
+
+    red: "#FF6558",
+
+    border: "#979797",
+
   },
 
   // tslint:disable-next-line: object-literal-sort-keys

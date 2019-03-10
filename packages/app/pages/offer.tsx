@@ -44,7 +44,18 @@ const TopBar = styled.div`
       font-family: "Roboto Condensed";
       font-size: ${props => props.theme.fontSize.base};
   }
+`
 
+const Button = styled.button`
+    border-radius: 5px;
+    background-color: ${props => props.theme.color.red};
+    color: ${props => props.theme.color.white};
+    font-size: ${props => props.theme.fontSize.xs};
+    padding: 20px 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
 `
 // ============================================================
 // ============================================================
@@ -113,8 +124,8 @@ const Block = styled.div<{ grey?: boolean }>`
   background-color: ${props => props.grey ? props.theme.color.greyLight : props.theme.color.white};
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
   }
 
   .block__header {
@@ -139,8 +150,6 @@ const Block = styled.div<{ grey?: boolean }>`
 
 const Section = styled.div`
 
-  padding: 0 10px 0 30px;
-
   .section__title {
     display: block;
     padding: 0 0 10px 0;
@@ -157,13 +166,46 @@ const Section = styled.div`
   .text {
     line-height: 26px;
 
-    color: #333333;
+    color: ${props => props.theme.color.greyDarker};
     font-size: ${props => props.theme.fontSize.base};
   }
 
   ul {
     list-style: none;
   }
+`
+
+const Contact = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+	border: 1px solid ${props => props.theme.color.border};
+	background-color: ${props => props.theme.color.white};
+
+  .contact__wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .contact__question {
+    color: ${props => props.theme.color.greyDark};
+    font-size: ${props => props.theme.fontSize.base};
+    }
+
+    .contact__person {
+      padding-left: 20px;
+      color: ${props => props.theme.color.almostBlack};;
+      font-size: ${props => props.theme.fontSize.xl};
+      font-weight: 500;
+    }
+
+    .contact__buttonbar {
+      padding-left: 30px;
+      display: inline-block;
+    }
+
+  }
+
 `
 
 // MOCK
@@ -211,10 +253,10 @@ class JobOfferPage extends Component<any, any> {
               <span className="block__header-hint">Chemin de catalanie, Bérat (31700), Occitanie</span>
             </div>
             <Row>
-              <GridItem flex="50%">
+              <GridItem flex="1">
                 <img src="/static/assets/photos/lobby.jpg"></img>
               </GridItem>
-              <GridItem flex="50%">
+              <GridItem flex="1">
                 <Section>
                   <span className="section__title">Présentation</span>
                   <span className="section__content text">Maison médicale neuve pluridisciplinaire (kiné-psychiatre-psychologue-orthophonistes-infirmières) - grand bureau avec terrasse. Informatisée, une patientéle jeune et dynamique. Projet de collaboration pour septembre 2019 avec bureau neuf pour collaborateur. Pellentesque tellus. Donec eget tortor vel dolor varius consectetuer. Donec mauris nibh, pretium a, tempus eget, varius in, eros. Cras lacus. Nam tellus purus, accumsan commodo, aliquam vitae, posuere nec, odio.</span>
@@ -385,6 +427,16 @@ class JobOfferPage extends Component<any, any> {
             </Row>
           </Container>
         </Block>
+        <Contact>
+          <Container fill className="contact__wrapper">
+            <span className="contact__question">Vous avez une question? Contacter</span>
+            <span className="contact__person">Suzanne Langlois, secrétaire de mairie</span>
+            <div className="contact__buttonbar">
+              <Button>06 99 99 55 44</Button>
+              <Button>CONTACTER PAR MAIL</Button>
+            </div>
+          </Container>
+        </Contact>
       </PageLayout >
     );
   }

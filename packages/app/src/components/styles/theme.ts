@@ -13,7 +13,11 @@ export default interface ThemeInterface {
     greyDark: string;
     greyDarker: string;
 
-    white: string
+    white: string;
+
+    red: string;
+
+    border: string;
   },
   fontSize: {
     xxs: string,
