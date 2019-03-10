@@ -3,6 +3,10 @@ export {
 }
 from './Header';
 export {
+  Footer
+}
+from './Footer';
+export {
   Heading
 }
 from './Heading';

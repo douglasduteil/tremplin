@@ -10,6 +10,7 @@ const theme: ThemeInterface = {
     // tslint:disable-next-line: object-literal-sort-keys
     almostBlack: "#26353f",
 
+    blueLighter: "#1E74FC",
     blueLight: "#2263FF",
     blue: "#0063FF",
 
@@ -38,7 +39,13 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     box-sizing: border-box;
     font-family: Roboto;
+    margin: 0;
   }
+
+  a {
+    cursor: pointer;
+  }
+
 `
 
 export default class MyApp extends App {

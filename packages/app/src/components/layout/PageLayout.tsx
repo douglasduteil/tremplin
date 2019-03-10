@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Footer } from "./Footer";
 import { Header } from "./Header";
 
 export class PageLayout extends React.Component<{ header?: boolean }> {
@@ -12,6 +13,7 @@ export class PageLayout extends React.Component<{ header?: boolean }> {
       <div>
         {this.props.header && <Header />}
         {this.props.children}
+        <Footer></Footer>
       </div>
     );
   }

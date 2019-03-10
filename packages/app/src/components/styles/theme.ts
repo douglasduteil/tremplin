@@ -4,8 +4,10 @@ export default interface ThemeInterface {
     black: string,
     almostBlack: string,
 
-    blue: string,
+    blueLighter: string,
     blueLight: string,
+    blue: string,
+
 
     greyLight: string;
     greyDark: string;
