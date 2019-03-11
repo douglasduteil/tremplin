@@ -1,7 +1,7 @@
 import { PageLayout, Row } from '@components/layout';
 import { Container } from '@components/layout/Container';
 import { GridItem } from '@components/layout/grid/Row';
-import { styled } from '@components/styles';
+import { styled, media } from '@components/styles';
 import Link from 'next/link';
 import { Component } from 'react';
 
