@@ -15,7 +15,7 @@ export {
 }
 from './PageLayout';
 export {
-  Row,
-  GridItem
+  Flex,
+  Item
 }
-from './grid/Row';
+from './flex/Flex';
