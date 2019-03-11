@@ -87,36 +87,36 @@ const Heading = styled.div`
 }
 `
 
-const BlockNav = styled.div`
-  position: sticky;
-  top: 0;
-  height: 70px;
+// const BlockNav = styled.div`
+//   position: sticky;
+//   top: 0;
+//   height: 70px;
 
-  background-color: ${props => props.theme.color.white};
+//   background-color: ${props => props.theme.color.white};
 
-  @media (max-width: 700px) {
-    display: none;
-  }
+//   @media (max-width: 700px) {
+//     display: none;
+//   }
 
-  .blocks-nav__item{
-    flex: 0 1 auto;
-    padding: 0 30px 0 0;
-    margin: 0 0 0 10px;
-    line-height: 70px;
+//   .blocks-nav__item{
+//     flex: 0 1 auto;
+//     padding: 0 30px 0 0;
+//     margin: 0 0 0 10px;
+//     line-height: 70px;
 
-    color: ${props => props.theme.color.greyDarker};
-    font-size: ${props => props.theme.fontSize.xl};
-    font-weight: 500;
-    text-transform: uppercase;
-    :hover {
-        cursor: pointer;
-        opacity: 0.6;
-      }
-    &.active {
-      border-bottom: 3px solid ${props => props.theme.color.blue};
-    }
-  }
-`
+//     color: ${props => props.theme.color.greyDarker};
+//     font-size: ${props => props.theme.fontSize.xl};
+//     font-weight: 500;
+//     text-transform: uppercase;
+//     :hover {
+//         cursor: pointer;
+//         opacity: 0.6;
+//       }
+//     &.active {
+//       border-bottom: 3px solid ${props => props.theme.color.blue};
+//     }
+//   }
+// `
 const Block = styled.div<{ grey?: boolean }>`
   border-bottom: 1px solid #CCCCCC;
   padding: 30px 0 50px 0;
@@ -143,7 +143,7 @@ const Block = styled.div<{ grey?: boolean }>`
   .block__header-hint {
     display: block;
 
-    color: #666666;
+    color: ${props => props.theme.color.greyDark};
     font-size: 22px;
   }
 `
@@ -187,16 +187,22 @@ const Contact = styled.div`
     padding-top: 20px;
     padding-bottom: 20px;
 
-    .contact__question {
-    color: ${props => props.theme.color.greyDark};
-    font-size: ${props => props.theme.fontSize.base};
-    }
+    .contact__infobar {
+      display: inline-block;
 
-    .contact__person {
-      padding-left: 20px;
-      color: ${props => props.theme.color.almostBlack};;
-      font-size: ${props => props.theme.fontSize.xl};
-      font-weight: 500;
+      ${media.phone`display: none;`}
+
+      .contact__question {
+        color: ${props => props.theme.color.greyDark};
+        font-size: ${props => props.theme.fontSize.base};
+      }
+
+      .contact__person {
+          padding-left: 20px;
+          color: ${props => props.theme.color.almostBlack};;
+          font-size: ${props => props.theme.fontSize.xl};
+          font-weight: 500;
+      }
     }
 
     .contact__buttonbar {
@@ -235,7 +241,7 @@ class JobOfferPage extends Component<any, any> {
             <span className="heading__hint">Médecin Généraliste | Offre publiée le 27 février 2019 à 18:00</span>
           </Container>
         </Heading>
-        <BlockNav>
+        {/* <BlockNav>
           <Container>
             <Row>
               <Link href="#block1"><div className="blocks-nav__item active">Exercice</div></Link>
@@ -245,7 +251,7 @@ class JobOfferPage extends Component<any, any> {
               <Link href="#block5"><div className="blocks-nav__item">Aide à l'installation</div></Link>
             </Row>
           </Container>
-        </BlockNav>
+        </BlockNav> */}
         <Block grey id="block1">
           <Container>
             <div className="block__header">
@@ -428,9 +434,11 @@ class JobOfferPage extends Component<any, any> {
           </Container>
         </Block>
         <Contact>
-          <Container fill className="contact__wrapper">
-            <span className="contact__question">Vous avez une question? Contacter</span>
-            <span className="contact__person">Suzanne Langlois, secrétaire de mairie</span>
+          <Container className="contact__wrapper" fill>
+            <div className="contact__infobar">
+              <span className="contact__question">Vous avez une question? Contacter</span>
+              <span className="contact__person">Suzanne Langlois, secrétaire de mairie</span>
+            </div>
             <div className="contact__buttonbar">
               <Button>06 99 99 55 44</Button>
               <Button>CONTACTER PAR MAIL</Button>

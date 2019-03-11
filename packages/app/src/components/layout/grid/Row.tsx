@@ -1,10 +1,10 @@
 import { media, styled } from "@components/styles";
 import { css } from "@components/styles/styledComponents";
 
-export const Row = styled.div<{spaceBetween?: boolean}>`
+export const Row = styled.div<{ wrap?: boolean, spaceBetween?: boolean }>`
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    ${props => props.wrap && css`flex-wrap: wrap;`}
     ${props => props.spaceBetween && css`justify-content: space-between;`}
     ${media.tablet`flex-direction: column;`}
     ${media.phone`flex-direction: column;`}
