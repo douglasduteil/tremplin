@@ -1,3 +1,4 @@
+import { Icon } from '@components/elements';
 import { Item, PageLayout } from '@components/layout';
 import { Container } from '@components/layout/Container';
 import { Flex } from '@components/layout/flex/Flex';
@@ -267,9 +268,9 @@ class JobOfferPage extends Component<any, any> {
                 <Section>
                   <span className="section__title">Equipements</span>
                   <div className="section__content text">
-                    <div>> Salle d'attente</div>
-                    <div>> Secretariat</div>
-                    <div>> Logiciel de prise de rendez-vous</div>
+                    <div><Icon checkCircle /> Salle d'attente</div>
+                    <div><Icon checkCircle /> Secretariat</div>
+                    <div><Icon checkCircle /> Logiciel de prise de rendez-vous</div>
                   </div>
                 </Section>
               </Item>
@@ -288,9 +289,9 @@ class JobOfferPage extends Component<any, any> {
                 <Section>
                   <span className="section__title">Transport</span>
                   <div className="section__content text">
-                    <div>> Proximité de Toulouse</div>
-                    <div>> Autoroute A64 à 7km</div>
-                    <div>> Stations de ski à 1h - Mer à 1h30</div>
+                    <div><Icon checkCircle /> Proximité de Toulouse</div>
+                    <div><Icon checkCircle /> Autoroute A64 à 7km</div>
+                    <div><Icon checkCircle /> Stations de ski à 1h - Mer à 1h30</div>
                   </div>
                 </Section>
               </Item>
@@ -307,10 +308,10 @@ class JobOfferPage extends Component<any, any> {
               <Item basis="calc(30% - 10px)">
                 <Section>
                   <div className="section__content text">
-                    <div>> Statut salarié</div>
-                    <div>> Conventionné Secteur 1</div>
-                    <div>> Temps partiel</div>
-                    <div>> Visites à domicile</div>
+                    <div><Icon checkCircle /> Statut salarié</div>
+                    <div><Icon checkCircle /> Conventionné Secteur 1</div>
+                    <div><Icon checkCircle /> Temps partiel</div>
+                    <div><Icon checkCircle /> Visites à domicile</div>
                   </div>
                 </Section>
               </Item>
@@ -334,9 +335,9 @@ class JobOfferPage extends Component<any, any> {
                 <Section>
                   <span className="section__title">Nombre de paramédicaux</span>
                   <div className="section__content text">
-                    <div>> 4 infirmières</div>
-                    <div>> Une kinésithérapeute</div>
-                    <div>> Une ostéopathe</div>
+                    <div><Icon checkCircle /> 4 infirmières</div>
+                    <div><Icon checkCircle /> Une kinésithérapeute</div>
+                    <div><Icon checkCircle /> Une ostéopathe</div>
                   </div>
                 </Section>
               </Item>
@@ -344,9 +345,9 @@ class JobOfferPage extends Component<any, any> {
                 <Section>
                   <span className="section__title">Équipements</span>
                   <div className="section__content text">
-                    <div>> Clinique ou CHU à 20km</div>
-                    <div>> Centre de radio-echographie à 7km</div>
-                    <div>> Laboratoire d'analyse à moins de 10km</div>
+                    <div><Icon checkCircle /> Clinique ou CHU à 20km</div>
+                    <div><Icon checkCircle /> Centre de radio-echographie à 7km</div>
+                    <div><Icon checkCircle /> Laboratoire d'analyse à moins de 10km</div>
                   </div>
                 </Section>
               </Item>
@@ -369,17 +370,17 @@ class JobOfferPage extends Component<any, any> {
                 <Section>
                   <span className="section__title">Equipements municipaux</span>
                   <div className="section__content text">
-                    <div>> 1 crèche, 1 collège, 1 lycée à moins de 20km</div>
-                    <div>> Proximité des services publics</div>
-                    <div>> 1 équipement sportif</div>
+                    <div><Icon checkCircle /> 1 crèche, 1 collège, 1 lycée à moins de 20km</div>
+                    <div><Icon checkCircle /> Proximité des services publics</div>
+                    <div><Icon checkCircle /> 1 équipement sportif</div>
                   </div>
                 </Section>
                 <Section>
                   <span className="section__title">Commerce</span>
                   <div className="section__content text">
-                    <div>> proximité des commerces</div>
-                    <div>> proximité des commerces</div>
-                    <div>> grand parking public</div>
+                    <div><Icon checkCircle /> proximité des commerces</div>
+                    <div><Icon checkCircle /> proximité des commerces</div>
+                    <div><Icon checkCircle /> grand parking public</div>
                   </div>
                 </Section>
                 <Section>
@@ -420,9 +421,9 @@ class JobOfferPage extends Component<any, any> {
                 <Section>
                   <span className="section__title">Aides éligibles</span>
                   <div className="section__content text">
-                    <div>> CESP</div>
-                    <div>> PTMC</div>
-                    <div>> ZRR</div>
+                    <div><Icon checkCircle /> CESP</div>
+                    <div><Icon checkCircle /> PTMC</div>
+                    <div><Icon checkCircle /> ZRR</div>
                   </div>
                 </Section>
               </Item>
