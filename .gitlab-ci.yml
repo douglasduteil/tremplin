@@ -2,14 +2,17 @@
 image: node:10-alpine
 
 stages:
-- "Install NPM Dependencies"
+- "Build & Push Docker Image"
 
-install-dependencies:
-  stage: "Install NPM Dependencies"
+build-and-push-tremplin-frontend-image:
+  stage: "Build & Push Docker Image"
+  image: docker:latest
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+  services:
+  - docker:dind
   script:
-  - yarn
-  artifacts:
-    expire_in: "1 day"
-    paths:
-    - node_modules
-    - packages/app/node_modules
+  - cd packages/app
+  # - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
+  - docker build -t "$CI_REGISTRY_IMAGE/frontend:latest" .
+  # - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
