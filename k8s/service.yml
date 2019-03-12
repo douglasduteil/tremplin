@@ -1,0 +1,13 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: tremplin
+  labels:
+    app: tremplin
+spec:
+  selector:
+    app: tremplin
+  ports:
+  - port: 1337
+    name: tremplin

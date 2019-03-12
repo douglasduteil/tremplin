@@ -1,0 +1,16 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tremplin
+  labels:
+    app: tremplin
+spec:
+  rules:
+  - host: tremplin.${{k8s_env}}.factory.social.gouv.fr
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: tremplin
+          servicePort: 1337

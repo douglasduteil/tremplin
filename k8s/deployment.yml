@@ -1,0 +1,22 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: tremplin
+  labels:
+    app: tremplin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tremplin
+  template:
+    metadata:
+      labels:
+        app: tremplin
+    spec:
+      containers:
+      - image:  registry.gitlab.factory.social.gouv.fr/socialgouv/tremplin/tremplin:${{IMAGE_TAG}}
+        name: tremplin
+        ports:
+        - containerPort: 1337
