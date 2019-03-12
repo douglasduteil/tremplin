@@ -1,11 +1,15 @@
 ---
-stages:
-- "Sample build step"
+image: node:10-alpine
 
-sample_build:
-  stage: "Sample build step"
-  image: node:current-slim
-  variables:
-    DOCKER_HOST: tcp://localhost:2375
+stages:
+- "Install NPM Dependencies"
+
+install-dependencies:
+  stage: "Install NPM Dependencies"
   script:
-  - npm install
+  - yarn
+  artifacts:
+    expire_in: "1 day"
+    paths:
+    - node_modules
+    - packages/app/node_modules
