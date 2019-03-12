@@ -13,6 +13,6 @@ build-and-push-tremplin-frontend-image:
   - docker:dind
   script:
   - cd packages/app
-  # - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
+  - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
   - docker build -t "$CI_REGISTRY_IMAGE/frontend:latest" .
-  # - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
+  - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
