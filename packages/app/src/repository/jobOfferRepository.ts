@@ -1,24 +1,18 @@
 import { JobOffer } from "@domain";
+import fetch from "node-fetch";
+import { from, Observable } from "rxjs";
+import { mergeMap } from 'rxjs/operators';
 
-export const jobOfferRepository = (): { findAll: () => JobOffer[] } => {
+export const jobOfferRepository = (): { findAll: () => Observable<JobOffer[]> } => {
   return {
-    findAll: () => {
-      return jobOffers;
-    }
+    findAll:  () => api<JobOffer[]>("http://127.0.0.1:1337/api/job-offers")
   }
 }
 
+function api<T>(url: string): Observable<T> {
+  return from(fetch(url)).pipe(
+    mergeMap(res => res.json())
+  );
+}
 
-const jobOffers: JobOffer[] = [
-  {
-    "id": 1,
-    "title": "Remplacement dans la Drôme"
-  }, {
-    "id": 2,
-    "title": "Remplacement à Val Thorens"
-  }, {
-    "id": 3,
-    "title": "Remplacement à Perpignan"
-  }
-]
 

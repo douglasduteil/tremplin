@@ -3,16 +3,23 @@ import { PageLayout } from "@components/layout";
 import { JobOffer } from "@domain";
 import { jobOfferRepository } from '@repository';
 import React, { Component } from "react";
+import { Subscription } from "rxjs";
 
-interface JobOffersProps {
-  jobOffers: JobOffer[];
-}
+export default class JobOffersPage extends Component<{}, { jobOffers: JobOffer[] }> {
 
-export default class JobOffersPage extends Component<JobOffersProps, any> {
+  private subscription!: Subscription;
 
-  public static getInitialProps = async () => {
-    const data = jobOfferRepository().findAll();
-    return { jobOffers: data };
+  public constructor(props: {}) {
+    super(props);
+    this.state = { jobOffers: [] };
+  }
+
+  public componentDidMount() {
+    this.subscription = jobOfferRepository().findAll().subscribe(jobOffers => this.setState({ jobOffers }));
+  }
+
+  public componentWillUnmount() {
+    this.subscription.unsubscribe();
   }
 
   public render() {
@@ -20,7 +27,7 @@ export default class JobOffersPage extends Component<JobOffersProps, any> {
       <PageLayout>
         <h1>Offres</h1>
         <ul>
-          {this.props.jobOffers.map(jobOffer => <JobOfferListItem key={jobOffer.id} jobOffer={jobOffer}></JobOfferListItem>)}
+          {this.state.jobOffers.map(jobOffer => <JobOfferListItem key={jobOffer.id} jobOffer={jobOffer}></JobOfferListItem>)}
         </ul>
       </PageLayout>
     )
