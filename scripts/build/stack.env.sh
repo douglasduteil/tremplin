@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export APP_STACK_VERSION=10.15
+
+echo "APP_STACK_VERSION: ${APP_STACK_VERSION}"
