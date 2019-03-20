@@ -3,21 +3,17 @@ import { PageLayout } from "@components/layout";
 import { JobOffer } from "@domain";
 import { jobOfferRepository } from '@repository';
 import React, { useEffect, useState } from "react";
-import { Subscription } from "rxjs";
 
 export default () => {
-  const subscription = new Subscription();
 
   const [jobOffers, setJobOffers] = useState<JobOffer[]>([]);
 
   useEffect(() => {
-    subscription.add(
-      jobOfferRepository().findAll().subscribe(res => { setJobOffers(res); })
-    );
+    const subscription = jobOfferRepository().findAll().subscribe(res => { setJobOffers(res); });
     return () => {
       subscription.unsubscribe();
     };
-  });
+  }, []);
 
   return (
     <PageLayout>
