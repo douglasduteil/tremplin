@@ -1,16 +1,19 @@
 import { JobOffer } from "@domain";
-import fetch from "node-fetch";
+import getConfig from "next/config";
 import { from, Observable } from "rxjs";
 import { mergeMap } from 'rxjs/operators';
 
 export const jobOfferRepository = (): { findAll: () => Observable<JobOffer[]> } => {
   return {
-    findAll:  () => api<JobOffer[]>("http://127.0.0.1:1337/api/job-offers")
+    findAll: () => api<JobOffer[]>(`job-offers`)
   }
 }
 
+// TODO(tglatt): extract to HttpClient.ts
+const config = getConfig();
+
 function api<T>(url: string): Observable<T> {
-  return from(fetch(url)).pipe(
+  return from(fetch(`${config.publicRuntimeConfig.API_URL}/${url}`)).pipe(
     mergeMap(res => res.json())
   );
 }

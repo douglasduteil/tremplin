@@ -17,7 +17,6 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@types/styled-components": "^4.1.11",
     "next": "^8.0.3",
-    "next-compose-plugins": "^2.1.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "rxjs": "^6.4.0",
