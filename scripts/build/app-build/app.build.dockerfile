@@ -20,7 +20,6 @@ COPY --from=builder $TMP_DEPS/$PACKAGES_APP_DIR/.next .next
 COPY --from=builder $TMP_DEPS/$PACKAGES_APP_DIR/static static
 COPY --from=builder $TMP_DEPS/$PACKAGES_APP_DIR/node_modules node_modules
 COPY --from=builder $TMP_DEPS/$PACKAGES_APP_DIR/package.json /app/package.json
-
-EXPOSE 3000
+COPY --from=builder $TMP_DEPS/$PACKAGES_APP_DIR/next.config.js /app/next.config.js
 
 ENTRYPOINT [ "yarn", "start"]
