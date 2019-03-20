@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  tremplin_api:
+    image: socialgouv/tremplin-api:latest
+    ports:
+      - "9090:9090"
+    environment:
+      TZ: Europe/Paris
+      PORT: 9090
+
+  tremplin_app:
+    image: socialgouv/tremplin-app:latest
+    ports:
+      - "3000:3000"
+    environment:
+      TZ: Europe/Paris
+      API_URL: http://localhost:9090/api
