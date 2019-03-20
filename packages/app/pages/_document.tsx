@@ -34,6 +34,7 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+          <link rel="stylesheet" href="/static/css/leaflet/leaflet.css" />
         </Head>
         <body>
           <Main />

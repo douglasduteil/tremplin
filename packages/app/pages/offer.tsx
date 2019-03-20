@@ -2,9 +2,15 @@ import { Icon } from '@components/elements';
 import { Item, PageLayout } from '@components/layout';
 import { Container } from '@components/layout/Container';
 import { Flex } from '@components/layout/flex/Flex';
+import { MapViewProps } from '@components/map';
 import { media, styled } from '@components/styles';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Component } from 'react';
+
+// https://github.com/zeit/next.js/issues/4515
+// https://github.com/DefinitelyTyped/DefinitelyTyped/pull/33163
+const MapView = dynamic<MapViewProps>((() => import("@components/map/MapView")) as any, { ssr: false });
 
 // ============================================================
 // ============================================================
@@ -171,6 +177,7 @@ const Contact = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 1000; /* leaflet component constraint */
 
 	border: 1px solid ${props => props.theme.color.border};
 	background-color: ${props => props.theme.color.white};
@@ -284,7 +291,9 @@ class JobOfferPage extends Component<any, any> {
               <span className="block__header-hint">Bérat (31700), Occitanie</span>
             </div>
             <Flex justifyBetween>
-              <Item basis="calc(60% - 10px)"><FakeImage></FakeImage></Item>
+              <Item basis="calc(60% - 10px)">
+                <MapView lat={44.7333} lng={5.0333} zoom={12}></MapView>
+              </Item>
               <Item basis="calc(40% - 10px)">
                 <Section>
                   <span className="section__title">Transport</span>
