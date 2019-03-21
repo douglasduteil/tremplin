@@ -6,8 +6,9 @@ variables:
   app_version: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
 
 stages:
-- build-base
-- build-base-dependencies
+- "build and push base image"
+- "build and push base-dependencies image"
+- "build and push tremplin images"
 
 # build-and-push-tremplin-frontend-image:
 #   stage: "Build & Push Docker Image"
