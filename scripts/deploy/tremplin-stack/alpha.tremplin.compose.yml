@@ -15,4 +15,4 @@ services:
       - "3000:3000"
     environment:
       TZ: Europe/Paris
-      API_URL: http://localhost:9090/api
+      API_URL: http://46.101.207.198:9090/api
