@@ -18,3 +18,16 @@ build-base:
   only:
   - docker_builds
 
+build-base-dependencies:
+  # extends: .build-image
+  before_script:
+    # login to docker registry
+    - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
+  script:
+    - bash ./scripts/build/base-dependencies/base-dependencies.build.sh --version=$app_versio --push=1
+  after_script:
+    - docker logout
+  stage: build-base-dependencies
+  only:
+  - docker_builds
+

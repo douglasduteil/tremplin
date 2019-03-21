@@ -7,6 +7,7 @@ variables:
 
 stages:
 - build-base
+- build-base-dependencies
 
 # build-and-push-tremplin-frontend-image:
 #   stage: "Build & Push Docker Image"
