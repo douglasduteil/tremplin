@@ -24,6 +24,9 @@ do
             DOCKER_PUSH="1"
             shift # past argument=value
         ;;
+        --branch-or-tag=*)
+            if["${i#*=}" == "tglatt/ci-build"]; then DOCKER_TAG_LATEST = "1"; fi
+            shift # past argument=value
          --quiet)
             DOCKER_BUILD_QUIET="--quiet=true"
             shift # past argument=value
@@ -77,7 +80,6 @@ echo ""
 
 # set -x
 docker build $DOCKER_BUILD_QUIET \
-    --build-arg IMAGE_VERSION=$DOCKER_IMAGE_TAG \
     --build-arg DOCKER_REGISTRY_IMAGE=$DOCKER_REGISTRY_IMAGE \
     -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG \
     -f $SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build.dockerfile \
@@ -92,5 +94,13 @@ then
     docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
     if [[ $? -ne 0 ]] ; then
         exit 1
+    fi
+
+    if [ "$DOCKER_TAG_LATEST" == "1" ]
+    then
+      docker push $DOCKER_IMAGE_NAME:latest
+      if [[ $? -ne 0 ]] ; then
+        exit 1
+      fi
     fi
 fi

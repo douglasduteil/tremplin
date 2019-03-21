@@ -25,11 +25,11 @@ build-tremplin-app:
   stage: "build and push tremplin images"
   extends: .build-image
   script:
-    - bash ./scripts/build/app-build/app.build.sh --registry-image=$registry_image --version=$app_version --push=1
+    - bash ./scripts/build/app-build/app.build.sh --branch-or-tag=$branch_or_tag --registry-image=$registry_image --version=$app_version --push=1
 
 build-tremplin-api:
   stage: "build and push tremplin images"
   extends: .build-image
   script:
-    - bash ./scripts/build/api-build/api.build.sh --registry-image=$registry_image --version=$app_version --push=1
+    - bash ./scripts/build/api-build/api.build.sh --branch-or-tag=$branch_or_tag --registry-image=$registry_image --version=$app_version --push=1
 
