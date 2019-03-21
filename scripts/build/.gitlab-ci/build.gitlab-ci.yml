@@ -6,9 +6,14 @@
     - docker logout
 
 build-base:
-  extends: .build-image
+  # extends: .build-image
+  before_script:
+    # login to docker registry
+    - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
   script:
     - bash ./scripts/build/base/base.build-dev.sh --push=1
+  after_script:
+    - docker logout
   stage: build-base
   only:
   - docker_builds
