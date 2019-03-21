@@ -19,7 +19,7 @@ build-base-dependencies:
   stage: "build and push base-dependencies image"
   extends: .build-image
   script:
-    - bash ./scripts/build/base-dependencies/base-dependencies.build.sh --version=$app_version --push=1
+    - bash ./scripts/build/base-dependencies/base-dependencies.build.sh --registry-image=$registry_image --version=$app_version --push=1
 
 # build-tremplin-app:
 #   before_script:
