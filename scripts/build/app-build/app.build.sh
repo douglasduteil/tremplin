@@ -80,13 +80,15 @@ echo ""
 docker build $DOCKER_BUILD_QUIET \
     --build-arg DOCKER_REGISTRY_IMAGE=$DOCKER_REGISTRY_IMAGE \
     --build-arg DOCKER_IMAGE_TAG=$DOCKER_IMAGE_TAG \
-    -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG \
+    -t $DOCKER_IMAGE_NAME \
     -f $SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build.dockerfile \
     $ROOT_DIR \
 
 if [[ $? -ne 0 ]] ; then
     exit 1
 fi
+
+docker tag $IMAGE_NAME $IMAGE_NAME:$DOCKER_IMAGE_TAG
 
 if [ "$DOCKER_PUSH" == "1" ]
 then
