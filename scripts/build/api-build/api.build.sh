@@ -25,7 +25,7 @@ do
             shift # past argument=value
         ;;
         --branch-or-tag=*)
-			      if [ "${i#*=}" = "master" ]; then DOCKER_TAG_LATEST="1"; fi
+			      if [ "${i#*=}" = "tglatt/ci-build" ]; then DOCKER_TAG_LATEST="1"; fi
             shift # past argument=value
         ;;
          --quiet)
@@ -82,6 +82,7 @@ echo ""
 # set -x
 docker build $DOCKER_BUILD_QUIET \
     --build-arg DOCKER_REGISTRY_IMAGE=$DOCKER_REGISTRY_IMAGE \
+    --build-arg DOCKER_IMAGE_TAG=$DOCKER_IMAGE_TAG \
     -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG \
     -f $SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build.dockerfile \
     $ROOT_DIR \

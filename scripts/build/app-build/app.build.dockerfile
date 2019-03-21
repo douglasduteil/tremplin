@@ -1,6 +1,7 @@
 ARG DOCKER_REGISTRY_IMAGE=socialgouv/tremplin
+ARG DOCKER_IMAGE_TAG
 
-FROM $DOCKER_REGISTRY_IMAGE/base-dependencies as builder
+FROM $DOCKER_REGISTRY_IMAGE/base-dependencies:$DOCKER_IMAGE_TAG as builder
 
 USER node
 
