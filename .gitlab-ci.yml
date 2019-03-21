@@ -1,18 +1,31 @@
 ---
 image: node:10-alpine
 
-stages:
-- "Build & Push Docker Image"
+variables:
+# https://docs.gitlab.com/ce/ci/variables/README.html
+  app_version: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
 
-build-and-push-tremplin-frontend-image:
-  stage: "Build & Push Docker Image"
-  image: docker:latest
-  variables:
-    DOCKER_HOST: tcp://localhost:2375
-  services:
-  - docker:dind
-  script:
-  - cd packages/app
-  - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
-  - docker build -t "$CI_REGISTRY_IMAGE/frontend:latest" .
-  - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
+stages:
+- build-base
+
+# build-and-push-tremplin-frontend-image:
+#   stage: "Build & Push Docker Image"
+#   image: docker:latest
+#   variables:
+#     DOCKER_HOST: tcp://localhost:2375
+#   services:
+#   - docker:dind
+#   script:
+#   - cd packages/app
+#   - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
+#   - docker build -t "$CI_REGISTRY_IMAGE/frontend:latest" .
+#   - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
+
+include:
+- local: '/scripts/build/.gitlab-ci/build.gitlab-ci.yml'
+  # - local: '/_scripts/system/deploy/.gitlab-ci/build-ci-images.gitlab-ci.yml'
+  # - local: '/_scripts/app-dev/build/.gitlab-ci/build-dev.gitlab-ci.yml'
+  # - local: '/_scripts/app-dist/build/.gitlab-ci/eutelsoft-ui-dist.gitlab-ci.yml'
+  # - local: '/_scripts/app-dist/build/.gitlab-ci/java-backend-dist.gitlab-ci.yml'
+  # - local: '/_scripts/app-dist/deploy/.gitlab-ci/deploy-app.gitlab-ci.yml'
+  # - local: '/_scripts/app-dist/deploy/.gitlab-ci/deploy-prod.gitlab-ci.yml'
