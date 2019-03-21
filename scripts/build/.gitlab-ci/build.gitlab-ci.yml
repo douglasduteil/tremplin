@@ -15,14 +15,11 @@ build-base:
     - bash ./scripts/build/base/base.build-dev.sh --push=1 --registry-image=$registry_image
 
 
-# build-base-dependencies:
-#   before_script:
-#     - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
-#   script:
-#     - bash ./scripts/build/base-dependencies/base-dependencies.build.sh --version=$app_version --push=1
-#   after_script:
-#     - docker logout
-#   stage: "build and push base-dependencies image"
+build-base-dependencies:
+  stage: "build and push base-dependencies image"
+  extends: .build-image
+  script:
+    - bash ./scripts/build/base-dependencies/base-dependencies.build.sh --version=$app_version --push=1
 
 # build-tremplin-app:
 #   before_script:

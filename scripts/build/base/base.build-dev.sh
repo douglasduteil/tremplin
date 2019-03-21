@@ -35,9 +35,9 @@ do
 done
 
 MODULE_NAME=base
-IMAGE_NAME=$REGISTRY_IMAGE/$MODULE_NAME
+DOCKER_IMAGE_NAME=$REGISTRY_IMAGE/$MODULE_NAME
 
-echo "IMAGE_NAME: ${IMAGE_NAME}"
+echo "DOCKER_IMAGE_NAME: ${DOCKER_IMAGE_NAME}"
 
 echo ""
 echo "###########################################"
@@ -45,12 +45,12 @@ echo ""
 echo "# BUILD:"
 echo ""
 
-docker build -t=$IMAGE_NAME -f /$SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build-dev.dockerfile /$SCRIPTS_BUILD_MODULE_DIR
+docker build -t=$DOCKER_IMAGE_NAME -f /$SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build-dev.dockerfile /$SCRIPTS_BUILD_MODULE_DIR
 if [[ $? -ne 0 ]] ; then
     exit 1
 fi
 
-docker tag $IMAGE_NAME $IMAGE_NAME:$APP_STACK_VERSION
+docker tag $DOCKER_IMAGE_NAME $DOCKER_IMAGE_NAME:$APP_STACK_VERSION
 
 if [ "$EU_DOCKER_PUSH" == "1" ]
 then
@@ -58,11 +58,11 @@ then
   echo ""
   echo ""
   echo "# DOCKER PUBLISH ALL: "
-  echo "# $IMAGE_NAME:latest "
-  echo "# $IMAGE_NAME:$APP_STACK_VERSION "
+  echo "# $DOCKER_IMAGE_NAME:latest "
+  echo "# $DOCKER_IMAGE_NAME:$APP_STACK_VERSION "
 
-  docker push $IMAGE_NAME:latest
-  docker push $IMAGE_NAME:$APP_STACK_VERSION
+  docker push $DOCKER_IMAGE_NAME:latest
+  docker push $DOCKER_IMAGE_NAME:$APP_STACK_VERSION
   if [[ $? -ne 0 ]] ; then
     exit 1
   fi
@@ -73,7 +73,7 @@ echo "###########################################"
   echo ""
   echo "To publish, run:"
   echo ""
-  echo "docker push $IMAGE_NAME:$APP_STACK_VERSION && docker push $IMAGE_NAME:latest"
+  echo "docker push $DOCKER_IMAGE_NAME:$APP_STACK_VERSION && docker push $DOCKER_IMAGE_NAME:latest"
   echo ""
   echo "###########################################"
   echo ""

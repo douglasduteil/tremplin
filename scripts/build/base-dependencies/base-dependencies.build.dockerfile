@@ -1,6 +1,6 @@
 # INSTALL DEPENDENCIES
 ARG BASE_IMAGE_VERSION
-FROM socialgouv/tremplin-dev-base:$BASE_IMAGE_VERSION
+FROM socialgouv/tremplin/base:$BASE_IMAGE_VERSION
 
 USER node
 
