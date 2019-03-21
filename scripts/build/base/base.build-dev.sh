@@ -12,14 +12,15 @@ if [[ $? -ne 0 ]] ; then
     exit 1
 fi
 
-MODULE_NAME=base
-IMAGE_NAME=socialgouv/tremplin-dev-base
-
 for i in "$@"
 do
     case $i in
          --push=*)
             EU_DOCKER_PUSH="1"
+            shift # past argument=value
+        ;;
+         --registry-image=*)
+            REGISTRY_IMAGE="${i#*=}"
             shift # past argument=value
         ;;
          --quiet)
@@ -36,6 +37,9 @@ do
         ;;
     esac
 done
+
+MODULE_NAME=base
+IMAGE_NAME=$REGISTRY_IMAGE/$MODULE_NAME
 
 echo ""
 echo "###########################################"

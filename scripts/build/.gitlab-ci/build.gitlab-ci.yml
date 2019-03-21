@@ -1,52 +1,40 @@
 build-base:
-  # extends: .build-image
-  before_script:
-    # login to docker registry
-    - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
-  script:
-    - bash ./scripts/build/base/base.build-dev.sh --push=1
-  after_script:
-    - docker logout
   stage: "build and push base image"
-  only:
-  - docker_builds
-
-build-base-dependencies:
-  # extends: .build-image
   before_script:
-    # login to docker registry
     - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
   script:
-    - bash ./scripts/build/base-dependencies/base-dependencies.build.sh --version=$app_version --push=1
+    - bash ./scripts/build/base/base.build-dev.sh --push=1 --registry-image=$registry_image
   after_script:
     - docker logout
-  stage: "build and push base-dependencies image"
-  only:
-  - docker_builds
 
-build-tremplin-app:
-  # extends: .build-image
-  before_script:
-    # login to docker registry
-    - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
-  script:
-    - bash ./scripts/build/app-build/app.build.sh --version=$app_version --push=1
-  after_script:
-    - docker logout
-  stage: "build and push tremplin images"
-  only:
-  - docker_builds
+# build-base-dependencies:
+#   before_script:
+#     - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
+#   script:
+#     - bash ./scripts/build/base-dependencies/base-dependencies.build.sh --version=$app_version --push=1
+#   after_script:
+#     - docker logout
+#   stage: "build and push base-dependencies image"
 
-build-tremplin-api:
-  # extends: .build-image
-  before_script:
-    # login to docker registry
-    - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
-  script:
-    - bash ./scripts/build/api-build/api.build.sh --version=$app_version --push=1
-  after_script:
-    - docker logout
-  stage: "build and push tremplin images"
-  only:
-  - docker_builds
+# build-tremplin-app:
+#   before_script:
+#     - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
+#   script:
+#     - bash ./scripts/build/app-build/app.build.sh --version=$app_version --push=1
+#   after_script:
+#     - docker logout
+#   stage: "build and push tremplin images"
+#   only:
+#   - docker_builds
+
+# build-tremplin-api:
+#   before_script:
+#     - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
+#   script:
+#     - bash ./scripts/build/api-build/api.build.sh --version=$app_version --push=1
+#   after_script:
+#     - docker logout
+#   stage: "build and push tremplin images"
+#   only:
+# - docker_builds
 

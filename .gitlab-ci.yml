@@ -4,12 +4,13 @@ image: node:10-alpine
 variables:
 # https://docs.gitlab.com/ce/ci/variables/README.html
   app_version: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+  registry_image: $CI_REGISTRY_IMAGE
 
 stages:
-- info
-- "build and push base image"
-- "build and push base-dependencies image"
-- "build and push tremplin images"
+  - info
+  - "build and push base image"
+# - "build and push base-dependencies image"
+# - "build and push tremplin images"
 
 info:
   stage: info
@@ -18,7 +19,7 @@ info:
     - docker --version
 
 include:
-- local: '/scripts/build/.gitlab-ci/build.gitlab-ci.yml'
+  - local: '/scripts/build/.gitlab-ci/build.gitlab-ci.yml'
 
 
 # build-and-push-tremplin-frontend-image:

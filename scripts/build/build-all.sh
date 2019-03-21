@@ -2,7 +2,7 @@
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
-./base/base.build-dev.sh
+./base/base.build-dev.sh --registry-image=socialgouv/tremplin
 
 ./base-dependencies/base-dependencies.build.sh  --version=latest
 
