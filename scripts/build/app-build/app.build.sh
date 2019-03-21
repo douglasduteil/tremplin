@@ -74,8 +74,7 @@ echo ""
 
 # set -x
 docker build $DOCKER_BUILD_QUIET \
-    --build-arg APP_VERSION=$DOCKER_IMAGE_TAG \
-    --build-arg BASE_IMAGE_VERSION=$DOCKER_IMAGE_TAG \
+    --build-arg IMAGE_VERSION=$DOCKER_IMAGE_TAG \
     --build-arg DOCKER_REGISTRY_IMAGE=$DOCKER_REGISTRY_IMAGE \
     -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG \
     -f $SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build.dockerfile \
