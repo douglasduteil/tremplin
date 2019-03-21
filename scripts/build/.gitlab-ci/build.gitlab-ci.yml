@@ -2,9 +2,10 @@ build-base:
   image: docker:latest
   stage: "build and push base image"
   before_script:
+    - RUN apk update && apk add bash
     - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
   script:
-    - ./scripts/build/base/base.build-dev.sh --push=1 --registry-image=$registry_image
+    - bash ./scripts/build/base/base.build-dev.sh --push=1 --registry-image=$registry_image
   after_script:
     - docker logout
 
