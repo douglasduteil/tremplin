@@ -5,6 +5,7 @@ variables:
 # https://docs.gitlab.com/ce/ci/variables/README.html
   app_version: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   registry_image: $CI_REGISTRY_IMAGE
+  DOCKER_HOST: tcp://localhost:2375
 
 stages:
   - info
