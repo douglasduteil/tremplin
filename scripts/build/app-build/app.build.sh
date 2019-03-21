@@ -22,7 +22,9 @@ do
             shift # past argument=value
         ;;
         --branch-or-tag=*)
-            if["${i#*=}" == "master"]; then DOCKER_TAG_LATEST = "1"; fi
+            if["${i#*=}" == "tglatt/ci-build"]
+              then DOCKER_TAG_LATEST = "1"
+            fi
             shift # past argument=value
         ;;
         --quiet)
