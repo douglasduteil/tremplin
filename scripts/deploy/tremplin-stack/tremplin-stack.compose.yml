@@ -2,7 +2,7 @@ version: "3"
 
 services:
   tremplin_api:
-    image: registry.gitlab.factory.social.gouv.fr/socialgouv/tremplin/api:latest
+    image: registry.gitlab.factory.social.gouv.fr/socialgouv/tremplin/api:tglatt-ci-build-e6d3dc557271ade4a4dc1ef6f987fde6ba5fece7
     ports:
       - "9090:9090"
     environment:
@@ -10,7 +10,7 @@ services:
       PORT: 9090
 
   tremplin_app:
-    image: registry.gitlab.factory.social.gouv.fr/socialgouv/tremplin/app:latest
+    image: registry.gitlab.factory.social.gouv.fr/socialgouv/tremplin/app:tglatt-ci-build-e6d3dc557271ade4a4dc1ef6f987fde6ba5fece7
     ports:
       - "3000:3000"
     environment:
