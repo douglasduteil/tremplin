@@ -6,9 +6,20 @@ variables:
   app_version: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
 
 stages:
+- info
 - "build and push base image"
 - "build and push base-dependencies image"
 - "build and push tremplin images"
+
+info:
+  stage: info
+  image: docker:latest
+  script:
+    - docker --version
+
+include:
+- local: '/scripts/build/.gitlab-ci/build.gitlab-ci.yml'
+
 
 # build-and-push-tremplin-frontend-image:
 #   stage: "Build & Push Docker Image"
@@ -23,11 +34,4 @@ stages:
 #   - docker build -t "$CI_REGISTRY_IMAGE/frontend:latest" .
 #   - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
 
-include:
-- local: '/scripts/build/.gitlab-ci/build.gitlab-ci.yml'
-  # - local: '/_scripts/system/deploy/.gitlab-ci/build-ci-images.gitlab-ci.yml'
-  # - local: '/_scripts/app-dev/build/.gitlab-ci/build-dev.gitlab-ci.yml'
-  # - local: '/_scripts/app-dist/build/.gitlab-ci/eutelsoft-ui-dist.gitlab-ci.yml'
-  # - local: '/_scripts/app-dist/build/.gitlab-ci/java-backend-dist.gitlab-ci.yml'
-  # - local: '/_scripts/app-dist/deploy/.gitlab-ci/deploy-app.gitlab-ci.yml'
-  # - local: '/_scripts/app-dist/deploy/.gitlab-ci/deploy-prod.gitlab-ci.yml'
+
