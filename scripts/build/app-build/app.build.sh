@@ -10,9 +10,6 @@ if [[ $? -ne 0 ]] ; then
     exit 1
 fi
 
-MODULE_NAME=app
-DOCKER_IMAGE_NAME=socialgouv/tremplin-app
-
 for i in "$@"
 do
     case $i in
@@ -26,6 +23,10 @@ do
         ;;
          --quiet)
             DOCKER_BUILD_QUIET="--quiet=true"
+            shift # past argument=value
+        ;;
+          --registry-image=*)
+            DOCKER_REGISTRY_IMAGE="${i#*=}"
             shift # past argument=value
         ;;
         *)
@@ -50,10 +51,23 @@ then
     exit 1
 fi
 
+if [ -z $DOCKER_REGISTRY_IMAGE ]
+then
+    echo "-----------------------------------"
+    echo "Use --registry-name tag:"
+    echo ""
+    echo "$0 --registry-name=registry.gitlab.factory.social.gouv.fr/socialgouv/tremplin"
+    echo ""
+    exit 1
+fi
+
+MODULE_NAME=app
+DOCKER_IMAGE_NAME=$DOCKER_REGISTRY_IMAGE/$MODULE_NAME
+
 echo ""
 echo "###################################################################################"
 echo ""
-echo "$0 --version=$DOCKER_IMAGE_TAG"
+echo "$0 --version=$DOCKER_IMAGE_TAG --registry-name=$DOCKER_REGISTRY_IMAGE"
 echo ""
 echo "###################################################################################"
 echo ""
@@ -62,6 +76,7 @@ echo ""
 docker build $DOCKER_BUILD_QUIET \
     --build-arg APP_VERSION=$DOCKER_IMAGE_TAG \
     --build-arg BASE_IMAGE_VERSION=$DOCKER_IMAGE_TAG \
+    --build-arg DOCKER_REGISTRY_IMAGE=$DOCKER_REGISTRY_IMAGE \
     -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG \
     -f $SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build.dockerfile \
     $ROOT_DIR \

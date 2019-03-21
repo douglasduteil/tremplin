@@ -21,25 +21,15 @@ build-base-dependencies:
   script:
     - bash ./scripts/build/base-dependencies/base-dependencies.build.sh --registry-image=$registry_image --version=$app_version --push=1
 
-# build-tremplin-app:
-#   before_script:
-#     - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
-#   script:
-#     - bash ./scripts/build/app-build/app.build.sh --version=$app_version --push=1
-#   after_script:
-#     - docker logout
-#   stage: "build and push tremplin images"
-#   only:
-#   - docker_builds
+build-tremplin-app:
+  stage: "build and push tremplin images"
+  extends: .build-image
+  script:
+    - bash ./scripts/build/app-build/app.build.sh --registry-image=$registry_image --version=$app_version --push=1
 
-# build-tremplin-api:
-#   before_script:
-#     - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
-#   script:
-#     - bash ./scripts/build/api-build/api.build.sh --version=$app_version --push=1
-#   after_script:
-#     - docker logout
-#   stage: "build and push tremplin images"
-#   only:
-# - docker_builds
+build-tremplin-api:
+  stage: "build and push tremplin images"
+  extends: .build-image
+  script:
+    - bash ./scripts/build/api-build/api.build.sh --registry-image=$registry_image --version=$app_version --push=1
 

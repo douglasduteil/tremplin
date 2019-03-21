@@ -11,7 +11,7 @@ stages:
   - info
   - "build and push base image"
   - "build and push base-dependencies image"
-# - "build and push tremplin images"
+  - "build and push tremplin images"
 
 info:
   stage: info
