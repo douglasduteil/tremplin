@@ -1,5 +1,7 @@
 ARG BASE_IMAGE_VERSION
-FROM socialgouv/tremplin-base-dependencies:$BASE_IMAGE_VERSION as builder
+ARG DOCKER_REGISTRY_IMAGE=socialgouv/tremplin
+
+FROM $DOCKER_REGISTRY_IMAGE/base-dependencies:$BASE_IMAGE_VERSION
 
 USER node
 
