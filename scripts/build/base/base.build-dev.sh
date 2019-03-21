@@ -41,6 +41,8 @@ done
 MODULE_NAME=base
 IMAGE_NAME=$REGISTRY_IMAGE/$MODULE_NAME
 
+echo "IMAGE_NAME: ${IMAGE_NAME}"
+
 echo ""
 echo "###########################################"
 echo ""

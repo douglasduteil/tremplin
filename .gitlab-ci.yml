@@ -9,6 +9,7 @@ variables:
 
 stages:
   - info
+  - "Sample build step"
   - "build and push base image"
 # - "build and push base-dependencies image"
 # - "build and push tremplin images"
@@ -18,6 +19,14 @@ info:
   image: docker:latest
   script:
     - docker --version
+
+sample_build:
+  stage: "Sample build step"
+  image: node:current-slim
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+  script:
+  - npm install
 
 include:
   - local: '/scripts/build/.gitlab-ci/build.gitlab-ci.yml'
