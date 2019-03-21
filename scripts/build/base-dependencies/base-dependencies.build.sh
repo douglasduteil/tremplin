@@ -62,7 +62,7 @@ echo ""
 docker build $DOCKER_BUILD_QUIET \
     --build-arg APP_VERSION=$DOCKER_IMAGE_TAG \
     --build-arg BASE_IMAGE_VERSION=$APP_STACK_VERSION \
-    -t $IMAGE_NAME:$DOCKER_IMAGE_TAG \
+    -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG \
     -f $SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build.dockerfile \
     $ROOT_DIR \
 
@@ -72,7 +72,7 @@ fi
 
 if [ "$DOCKER_PUSH" == "1" ]
 then
-    docker push $IMAGE_NAME:$DOCKER_IMAGE_TAG
+    docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
     if [[ $? -ne 0 ]] ; then
         exit 1
     fi
