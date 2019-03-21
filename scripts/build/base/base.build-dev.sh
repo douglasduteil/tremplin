@@ -23,10 +23,6 @@ do
             REGISTRY_IMAGE="${i#*=}"
             shift # past argument=value
         ;;
-         --quiet)
-            EU_DOCKER_BUILD_QUIET="--quiet=true"
-            shift # past argument=value
-        ;;
         *)
             # unknown option
             echo
@@ -48,11 +44,12 @@ echo "###########################################"
 echo ""
 echo "# BUILD:"
 echo ""
-# docker pull node:$NODE_VERSION_MAJOR.$NODE_VERSION_MINOR
-docker build $EU_DOCKER_BUILD_QUIET -t=$IMAGE_NAME -f /$SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build-dev.dockerfile /$SCRIPTS_BUILD_MODULE_DIR
+
+docker build -t=$IMAGE_NAME -f /$SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build-dev.dockerfile /$SCRIPTS_BUILD_MODULE_DIR
 if [[ $? -ne 0 ]] ; then
     exit 1
 fi
+
 docker tag $IMAGE_NAME $IMAGE_NAME:$APP_STACK_VERSION
 
 if [ "$EU_DOCKER_PUSH" == "1" ]

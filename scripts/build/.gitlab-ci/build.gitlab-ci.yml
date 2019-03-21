@@ -1,6 +1,8 @@
 build-base:
   image: docker:latest
   stage: "build and push base image"
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
   before_script:
     - apk update && apk add bash
     - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
