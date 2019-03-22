@@ -1,5 +1,5 @@
 ---
-image: node:10-alpine
+image: docker:18.09
 
 variables:
 # https://docs.gitlab.com/ce/ci/variables/README.html
@@ -16,7 +16,6 @@ stages:
 
 info:
   stage: info
-  image: docker:latest
   script:
     - docker --version
 
