@@ -1,0 +1,14 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: tremplin-app${BRANCH_NAME}
+  labels:
+    app: tremplin-app${BRANCH_NAME}
+    branch: tremplin${BRANCH_NAME}
+spec:
+  selector:
+    app: tremplin-app${BRANCH_NAME}
+  ports:
+  - port: ${PORT}
+    name: app

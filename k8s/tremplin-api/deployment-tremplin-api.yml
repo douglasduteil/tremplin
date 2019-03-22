@@ -1,0 +1,38 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: tremplin-api${BRANCH_NAME}
+  labels:
+    app: tremplin-api${BRANCH_NAME}
+    branch: tremplin${BRANCH_NAME}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tremplin-api${BRANCH_NAME}
+  template:
+    metadata:
+      labels:
+        app: tremplin-api${BRANCH_NAME}
+    spec:
+      containers:
+      - image:  ${CDTN_REGISTRY}/api:${IMAGE_TAG}
+        name: tremplin-api${BRANCH_NAME}
+        ports:
+        - containerPort: ${PORT}
+        livenessProbe:
+          httpGet:
+            path: /api
+            port: ${PORT}
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /api
+            port: ${PORT}
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        env:
+        - name: PORT
+          value: ${PORT}

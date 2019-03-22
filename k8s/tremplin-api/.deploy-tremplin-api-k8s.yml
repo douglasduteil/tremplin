@@ -1,0 +1,14 @@
+.deploy-tremplin-api-k8s:
+  image:
+    name: $CI_REGISTRY/$IMAGE_INFRA_BASE_NAME/docker-kube:latest
+    entrypoint: [""]
+  before_script:
+  - /apps/create-kubeconfig.sh
+  - envsubst < k8s/tremplin-api/deployment-tremplin-api.yml > k8s/tremplin-api/deployment-api.yml
+  - envsubst < k8s/tremplin-api/service-tremplin-api.yml > k8s/tremplin-api/service-api.yml
+  - envsubst < k8s/tremplin-api/ingress-tremplin-api.yml > k8s/tremplin-api/ingress-api.yml
+  script:
+  - kubectl apply -f k8s/tremplin-api/deployment-api.yml
+  - kubectl apply -f k8s/tremplin-api/service-api.yml
+  - kubectl apply -f k8s/tremplin-api/ingress-api.yml
+  allow_failure: false

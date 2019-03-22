@@ -1,13 +1,29 @@
 ---
+include:
+- '/k8s/tremplin-api/.deploy-tremplin-api-k8s.yml'
+- '/k8s/tremplin-app/.deploy-tremplin-app-k8s.yml'
+
 variables:
-# https://docs.gitlab.com/ce/ci/variables/README.html
-  DOCKER_HOST: tcp://localhost:2375
-  DOCKER_VERSION: 18.06
+  DOCKER_HOST: "tcp://localhost:2375"
+  DOCKER_VERSION: "18.06"
+  K8S_SERVER: $K8S_SERVER_DEV
+  K8S_CLUSTER_NAME: $K8S_CLUSTER_NAME_DEV
+  K8S_NAMESPACE: $K8S_NAMESPACE_DEV
+  K8S_USERNAME: $K8S_USERNAME_DEV
+  K8S_CONTEXT: $K8S_CONTEXT_DEV
+  K8S_TOKEN: $K8S_TOKEN_DEV
+  IMAGE_TAG: $CI_COMMIT_SHA
+  BRANCH_NAME: -$CI_COMMIT_REF_NAME
+  ENVIRONMENT: $CI_ENVIRONMENT_NAME
+  TREMPLIN_REGISTRY: $CI_REGISTRY_IMAGE
+  API_PORT: 1337
+  APP_PORT: 3000
 
 image: docker:$DOCKER_VERSION
 
 stages:
   - "Build and Push Docker Image"
+  - "Deploy Tremplin"
 
 build-and-push-tremplin-api-image:
   stage: "Build and Push Docker Image"
@@ -26,3 +42,23 @@ build-and-push-tremplin-app-image:
   script:
   - docker build -t "$CI_REGISTRY_IMAGE/app:$CI_COMMIT_SHA" .
   - docker push "$CI_REGISTRY_IMAGE/app:$CI_COMMIT_SHA"
+
+deploy-tremplin-api:
+  stage: "Deploy Tremplin"
+  extends: .deploy-tremplin-api-k8s
+  variables:
+    PORT: ${API_PORT}
+  environment:
+    name: dev
+  except:
+  - master
+
+deploy-tremplin-app:
+  stage: "Deploy Tremplin"
+  extends: .deploy-tremplin-app-k8s
+  variables:
+    PORT: ${APP_PORT}
+  environment:
+    name: dev
+  except:
+  - master

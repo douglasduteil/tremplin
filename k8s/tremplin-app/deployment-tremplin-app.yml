@@ -1,0 +1,40 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: tremplin-app${BRANCH_NAME}
+  labels:
+    app: tremplin-app${BRANCH_NAME}
+    branch: tremplin${BRANCH_NAME}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tremplin-app${BRANCH_NAME}
+  template:
+    metadata:
+      labels:
+        app: tremplin-app${BRANCH_NAME}
+    spec:
+      containers:
+      - image:  ${CDTN_REGISTRY}/app:${IMAGE_TAG}
+        name: tremplin-app
+        ports:
+        - containerPort: ${PORT}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: ${PORT}
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: ${PORT}
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        env:
+        - name: API_URL
+          value: http://tremplin-api${BRANCH_NAME}.${ENVIRONMENT}.factory.social.gouv.fr/api
+        - name: PORT
+          value: ${PORT}
