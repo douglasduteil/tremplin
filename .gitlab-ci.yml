@@ -1,24 +1,28 @@
 ---
-image: docker:18.09
-
 variables:
 # https://docs.gitlab.com/ce/ci/variables/README.html
-  app_version: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
-  registry_image: $CI_REGISTRY_IMAGE
-  branch_or_tag: $CI_COMMIT_REF_NAME
-  docker_node_image: node:10.15-jessie
   DOCKER_HOST: tcp://localhost:2375
+  DOCKER_VERSION: 18.06
+
+image: docker:$DOCKER_VERSION
 
 stages:
-  - info
-  - "build and push base image"
-  - "build and push base-dependencies image"
-  - "build and push tremplin images"
+  - "Build and Push Docker Image"
 
-info:
-  stage: info
+build-and-push-tremplin-api-image:
+  stage: "Build and Push Docker Image"
+  before_script:
+  - cd packages/api
+  - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
   script:
-    - docker --version
+  - docker build -t "$CI_REGISTRY_IMAGE/api:$CI_COMMIT_SHA" .
+  - docker push "$CI_REGISTRY_IMAGE/api:$CI_COMMIT_SHA"
 
-include:
-  - local: '/scripts/build/.gitlab-ci/build.gitlab-ci.yml'
+build-and-push-tremplin-app-image:
+  stage: "Build and Push Docker Image"
+  before_script:
+  - cd packages/app
+  - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
+  script:
+  - docker build -t "$CI_REGISTRY_IMAGE/app:$CI_COMMIT_SHA" .
+  - docker push "$CI_REGISTRY_IMAGE/app:$CI_COMMIT_SHA"
