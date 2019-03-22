@@ -22,19 +22,3 @@ info:
 
 include:
   - local: '/scripts/build/.gitlab-ci/build.gitlab-ci.yml'
-
-
-# build-and-push-tremplin-frontend-image:
-#   stage: "Build & Push Docker Image"
-#   image: docker:latest
-#   variables:
-#     DOCKER_HOST: tcp://localhost:2375
-#   services:
-#   - docker:dind
-#   script:
-#   - cd packages/app
-#   - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
-#   - docker build -t "$CI_REGISTRY_IMAGE/frontend:latest" .
-#   - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
-
-
