@@ -11,7 +11,7 @@ build-base:
   stage: "build and push base image"
   extends: .build-image
   script:
-    - bash ./scripts/build/base/base.build-dev.sh --push=1 --registry-image=$registry_image
+    - bash ./scripts/build/base/base.build-dev.sh --push=1 --registry-image=$registry_image --docker-node-image=$docker_node_image
 
 
 build-base-dependencies:
@@ -24,11 +24,11 @@ build-tremplin-app:
   stage: "build and push tremplin images"
   extends: .build-image
   script:
-    - bash ./scripts/build/app-build/app.build.sh --branch-or-tag=$branch_or_tag --registry-image=$registry_image --version=$app_version --push=1
+    - bash ./scripts/build/app-build/app.build.sh --branch-or-tag=$branch_or_tag --registry-image=$registry_image --version=$app_version --push=1 --docker-node-image=$docker_node_image
 
 build-tremplin-api:
   stage: "build and push tremplin images"
   extends: .build-image
   script:
-    - bash ./scripts/build/api-build/api.build.sh --branch-or-tag=$branch_or_tag --registry-image=$registry_image --version=$app_version --push=1
+    - bash ./scripts/build/api-build/api.build.sh --branch-or-tag=$branch_or_tag --registry-image=$registry_image --version=$app_version --push=1 --docker-node-image=$docker_node_image
 

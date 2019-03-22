@@ -1,4 +1,6 @@
-FROM node:10.15-jessie
+ARG DOCKER_NODE_IMAGE=node:10.15-jessie
+
+FROM ${DOCKER_NODE_IMAGE}
 
 USER root
 

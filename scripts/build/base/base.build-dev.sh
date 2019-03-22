@@ -23,6 +23,10 @@ do
             REGISTRY_IMAGE="${i#*=}"
             shift # past argument=value
         ;;
+        --docker-node-image=*)
+            DOCKER_NODE_IMAGE="${i#*=}"
+            shift # past argument=value
+        ;;
         *)
             # unknown option
             echo
@@ -45,7 +49,7 @@ echo ""
 echo "# BUILD:"
 echo ""
 
-docker build -t=$DOCKER_IMAGE_NAME -f /$SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build-dev.dockerfile /$SCRIPTS_BUILD_MODULE_DIR
+docker build --build-arg DOCKER_NODE_IMAGE=$DOCKER_NODE_IMAGE -t=$DOCKER_IMAGE_NAME -f /$SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build-dev.dockerfile /$SCRIPTS_BUILD_MODULE_DIR
 if [[ $? -ne 0 ]] ; then
     exit 1
 fi

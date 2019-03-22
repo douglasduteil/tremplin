@@ -33,6 +33,10 @@ do
             DOCKER_REGISTRY_IMAGE="${i#*=}"
             shift # past argument=value
         ;;
+         --docker-node-image=*)
+            DOCKER_NODE_IMAGE="${i#*=}"
+            shift # past argument=value
+        ;;
         *)
             # unknown option
             echo
@@ -80,6 +84,7 @@ echo ""
 docker build $DOCKER_BUILD_QUIET \
     --build-arg DOCKER_REGISTRY_IMAGE=$DOCKER_REGISTRY_IMAGE \
     --build-arg DOCKER_IMAGE_TAG=$DOCKER_IMAGE_TAG \
+    --build-arg DOCKER_NODE_IMAGE=$DOCKER_NODE_IMAGE \
     -t $DOCKER_IMAGE_NAME \
     -f $SCRIPTS_BUILD_MODULE_DIR/${MODULE_NAME}.build.dockerfile \
     $ROOT_DIR \

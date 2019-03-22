@@ -6,6 +6,7 @@ variables:
   app_version: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   registry_image: $CI_REGISTRY_IMAGE
   branch_or_tag: $CI_COMMIT_REF_NAME
+  docker_node_image: node:10.15-jessie
   DOCKER_HOST: tcp://localhost:2375
 
 stages:

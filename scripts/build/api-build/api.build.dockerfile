@@ -1,5 +1,6 @@
 ARG DOCKER_REGISTRY_IMAGE=socialgouv/tremplin
 ARG DOCKER_IMAGE_TAG
+ARG DOCKER_NODE_IMAGE=node:10.15-jessie
 
 FROM $DOCKER_REGISTRY_IMAGE/base-dependencies:$DOCKER_IMAGE_TAG as builder
 
@@ -11,7 +12,7 @@ ENV PACKAGES_API_DIR packages/api
 COPY --chown=node:node ${PACKAGES_API_DIR} ${TMP_DEPS}/${PACKAGES_API_DIR}
 RUN cd $TMP_DEPS/$PACKAGES_API_DIR && yarn build
 
-FROM node:10.15-jessie
+FROM ${DOCKER_NODE_IMAGE}
 
 ENV TMP_DEPS /tmp/deps
 ENV PACKAGES_API_DIR packages/api
