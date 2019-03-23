@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  tremplin-app:
+    build:
+      context: .
+      dockerfile: ./packages/app/Dockerfile
+    image: registry.gitlab.factory.social.gouv.fr/socialgouv/tremplin/app
+    depends_on:
+      - tremplin-api
+    ports:
+      - 3000:3000
+
+  tremplin-api:
+    ports:
+      - 1337:1337
+    build:
+      context: .
+      dockerfile: ./packages/api/Dockerfile
+    image: registry.gitlab.factory.social.gouv.fr/socialgouv/tremplin/api
+

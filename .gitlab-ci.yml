@@ -1,11 +1,36 @@
 ---
-stages:
-- "Sample build step"
+image: docker:18.09
 
-sample_build:
-  stage: "Sample build step"
-  image: node:current-slim
-  variables:
-    DOCKER_HOST: tcp://localhost:2375
+variables:
+# https://docs.gitlab.com/ce/ci/variables/README.html
+  app_version: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+  registry_image: $CI_REGISTRY_IMAGE
+  branch_or_tag: $CI_COMMIT_REF_NAME
+  docker_node_image: node:10.15-jessie
+  DOCKER_HOST: tcp://localhost:2375
+
+stages:
+- info
+- "build and push images"
+
+info:
+  stage: info
   script:
-  - npm install
+    - docker --version
+
+build-image-app:
+  services:
+    - docker:dind
+  stage: "build and push images"
+  before_script:
+    - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
+    - apk update && apk add --no-cache bash py-pip openssl
+    - pip install docker-compose==1.19.0
+  script:
+    - docker-compose up
+    # - push app image
+    # - push api image
+  after_script:
+    - docker logout
+
+
