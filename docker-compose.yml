@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./packages/app/Dockerfile
-    image: registry.gitlab.factory.social.gouv.fr/socialgouv/tremplin/app
+    image: ${REGISTRY_IMAGE}/app:${APP_VERSION}
     depends_on:
       - tremplin-api
     ports:
@@ -17,5 +17,5 @@ services:
     build:
       context: .
       dockerfile: ./packages/api/Dockerfile
-    image: registry.gitlab.factory.social.gouv.fr/socialgouv/tremplin/api
+    image: ${REGISTRY_IMAGE}/api:${APP_VERSION}
 

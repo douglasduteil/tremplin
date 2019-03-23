@@ -3,10 +3,10 @@ image: docker:18.09
 
 variables:
 # https://docs.gitlab.com/ce/ci/variables/README.html
-  app_version: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
-  registry_image: $CI_REGISTRY_IMAGE
-  branch_or_tag: $CI_COMMIT_REF_NAME
-  docker_node_image: node:10.15-jessie
+  APP_VERSION: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+  REGISTRY_IMAGE: $CI_REGISTRY_IMAGE
+  DOCKER_NODE_IMAGE: node:10.15-jessie
+  DOCKER_COMPOSE_VERSION: 1.19.0
   DOCKER_HOST: tcp://localhost:2375
 
 stages:
@@ -25,11 +25,11 @@ build-image-app:
   before_script:
     - docker login  $CI_REGISTRY -u gitlab-ci-token -p $CI_JOB_TOKEN
     - apk update && apk add --no-cache bash py-pip openssl
-    - pip install docker-compose==1.19.0
+    - pip install docker-compose==${DOCKER_COMPOSE_VERSION}
   script:
-    - docker-compose up
-    # - push app image
-    # - push api image
+    - docker-compose build
+    - docker push ${REGISTRY_IMAGE}/api:${APP_VERSION}
+    - docker push ${REGISTRY_IMAGE}/app:${APP_VERSION}
   after_script:
     - docker logout
 
